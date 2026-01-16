@@ -13,8 +13,7 @@ interface BookContextType {
 
 const BookContext = createContext<BookContextType | undefined>(undefined);
 
-// 👇 URL ÚNICA DEL BACKEND (DENTRO DE DOCKER)
-const API_URL = "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const BookProvider = ({ children }: { children: ReactNode }) => {
   const [books, setBooks] = useState<Book[]>([]);
