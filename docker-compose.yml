@@ -1,10 +1,15 @@
+version: "3.9"
 services:
   db:
     image: postgres:15
     container_name: booktracker-db
     restart: always
-    env_file:
-      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: booktracker
+    ports:
+      - "5432:5432"
     volumes:
       - booktracker-data:/var/lib/postgresql/data
 
@@ -13,10 +18,10 @@ services:
     container_name: fastapi-backend
     depends_on:
       - db
-    env_file:
-      - .env
     ports:
       - "8000:8000"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/booktracker
 
   frontend:
     build: ./frontend
@@ -24,7 +29,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "5173:80"
+      - "5173:80" # Nginx sirve React en 80 dentro del contenedor
     env_file:
       - ./frontend/.env
 
