@@ -1,70 +1,82 @@
-📚 Book Tracker
+# 📚 Book Tracker
 
-Aplicación Full Stack para gestionar libros (CRUD), desarrollada con React + TypeScript en el frontend y FastAPI + PostgreSQL en el backend.
-El frontend está desplegado en Netlify y el backend en Railway.
+**Book Tracker** es una aplicación **Full Stack** para la gestión de libros, que permite crear, listar, editar y eliminar libros, así como marcar su estado de lectura.  
+El proyecto está construido con **React + TypeScript** en el frontend y **FastAPI + PostgreSQL** en el backend, siguiendo buenas prácticas de desarrollo y despliegue en la nube.
 
-🚀 Demo en Producción
+---
 
-🌐 Frontend (Netlify)
-👉 <https://book-tracker1.netlify.app>
+## 🌐 Demo en Producción
 
-⚙️ Backend API (Railway)
-👉 <https://bountiful-imagination-production.up.railway.app>
+- **Frontend (Netlify)**  
+  👉 <https://book-tracker1.netlify.app>
 
-👉 Swagger Docs: /docs
-`🧱 Arquitectura
-Frontend (React + Vite + TS)
-|
-| Axios (REST)
-|
-Backend (FastAPI)
-|
-| SQLAlchemy + Databases
-|
-PostgreSQL (Railway)`
-🛠️ Tecnologías
-Frontend
+- **Backend API (Railway)**  
+  👉 <https://bountiful-imagination-production.up.railway.app>  
+  📘 **Swagger**: `/docs`
 
-React
+---
 
-TypeScript
+## 🧱 Arquitectura General
 
-Vite
+┌──────────────────────────┐
+│ Frontend (React + TS) │
+│ Vite + Context API │
+└────────────┬─────────────┘
+│ Axios (REST)
+┌────────────▼─────────────┐
+│ Backend (FastAPI) │
+│ SQLAlchemy + Databases │
+└────────────┬─────────────┘
+│
+┌────────────▼─────────────┐
+│ PostgreSQL DB │
+│ (Railway) │
+└──────────────────────────┘
 
-Axios
+yaml
+Copiar código
 
-Context API
+---
 
-Netlify (deploy)
+## 🛠️ Tecnologías Utilizadas
 
-Backend
+### Frontend
 
-FastAPI
+- React
+- TypeScript
+- Vite
+- Axios
+- Context API
+- Netlify (Deploy)
 
-Python 3.11
+### Backend
 
-SQLAlchemy
+- FastAPI
+- Python 3.11
+- SQLAlchemy
+- Databases
+- PostgreSQL
+- Uvicorn
+- Docker
+- Railway (Deploy)
 
-Databases
+---
 
-PostgreSQL
+## ✨ Funcionalidades
 
-Uvicorn
+- 📖 Listar libros
+- ➕ Agregar libros
+- ✏️ Editar libros
+- 🗑️ Eliminar libros
+- ✅ Marcar libros como leídos
+- 🌐 Consumo de API REST
+- 🔒 CORS configurado para producción
+- 🗄️ Persistencia en PostgreSQL
 
-Docker
+---
 
-Railway (deploy)
+## 📁 Estructura del Proyecto
 
-📦 Funcionalidades
-
-✔️ Listar libros
-✔️ Crear libros
-✔️ Editar libros
-✔️ Eliminar libros
-✔️ Estado de lectura
-✔️ Persistencia en base de datos
-✔️ CORS configurado para producción
-`📁 Estructura del Proyecto
 book-tracker/
 ├── backend/
 │ ├── main.py
@@ -82,90 +94,100 @@ book-tracker/
 │ └── main.tsx
 ├── index.html
 ├── vite.config.ts
-└── .env`
-⚙️ Variables de Entorno
-Frontend (frontend/.env)
-VITE_API_URL=<https://bountiful-imagination-production.up.railway.app>
+└── .env
 
+yaml
+Copiar código
+
+---
+
+## ⚙️ Variables de Entorno
+
+### Frontend (`frontend/.env`)
+
+```env
+VITE_API_URL=https://bountiful-imagination-production.up.railway.app
 Backend (backend/.env)
+env
+Copiar código
 DATABASE_URL=postgresql://user:password@host:port/database
+⚠️ En producción, estas variables se configuran directamente en Netlify y Railway.
 
-📌 En producción, estas variables se configuran directamente en Railway y Netlify.
-
-▶️ Ejecutar el Proyecto en Local
+▶️ Ejecución en Local
 1️⃣ Backend
+bash
+Copiar código
 cd backend
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 uvicorn main:app --reload
+📍 Backend disponible en:
 
-Backend disponible en:
-
-<http://127.0.0.1:8000>
-
+cpp
+Copiar código
+http://127.0.0.1:8000
 2️⃣ Frontend
+bash
+Copiar código
 cd frontend
 npm install
 npm run dev
+📍 Frontend disponible en:
 
-Frontend disponible en:
+arduino
+Copiar código
+http://localhost:5173
+🔒 Configuración CORS
+El backend permite solicitudes desde:
 
-<http://localhost:5173>
+http://localhost:5173
 
-🔒 CORS
+https://book-tracker1.netlify.app
 
-El backend está configurado para aceptar peticiones desde:
+Configurado mediante CORSMiddleware en FastAPI.
 
-<http://localhost:5173>
-
-<https://book-tracker1.netlify.app>
-
-📌 Endpoints Principales
+📌 Endpoints de la API
 Método Endpoint Descripción
 GET /books Obtener libros
 POST /books Crear libro
 PUT /books/{id} Actualizar libro
 DELETE /books/{id} Eliminar libro
-📄 Documentación API
 
+📄 Documentación de la API
 FastAPI genera documentación automática:
 
-Swagger UI → /docs
+📘 Swagger UI → /docs
 
-ReDoc → /redoc
+📙 ReDoc → /redoc
 
-🚀 Deploy
+🚀 Despliegue
 Backend
+Contenerizado con Docker
 
-Dockerizado
+Desplegado en Railway
 
-Deploy en Railway
-
-PostgreSQL gestionado por Railway
+Base de datos PostgreSQL administrada por Railway
 
 Frontend
-
 Build con Vite
 
-Deploy en Netlify
+Desplegado en Netlify
 
-Variables de entorno configuradas en Netlify
+Variables de entorno configuradas desde Netlify UI
 
-📌 Próximas Mejoras
+🧩 Próximas Mejoras
+🔐 Autenticación y autorización (JWT)
 
-🔐 Autenticación con JWT
+👥 Gestión de usuarios
 
-👤 Usuarios y sesiones
+🧪 Tests automatizados (Pytest / Vitest)
 
-🧪 Tests (Pytest + Vitest)
+🗂️ Migraciones con Alembic
 
-📦 Migraciones con Alembic
-
-🧹 Clean Architecture
+🧼 Arquitectura limpia (Clean Architecture)
 
 👨‍💻 Autor
-
-Proyecto desarrollado por:
 Juan David Valencia
 Ingeniero de Software
+```
