@@ -11,7 +11,7 @@ app = FastAPI(title="Book Tracker API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://book-tracker1.netlify.app/"],  # OK para desarrollo
+    allow_origins=["https://book-tracker1.netlify.app"],  # OK para desarrollo
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
