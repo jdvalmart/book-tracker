@@ -1,13 +1,13 @@
 
-import os
 from databases import Database
 from sqlalchemy import create_engine, MetaData
 
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql+psycopg2://postgres:postgres@db:5432/booktracker"
-)
+DATABASE_URL = "sqlite:///./books.db"
 
 database = Database(DATABASE_URL)
-engine = create_engine(DATABASE_URL)
 metadata = MetaData()
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}
+)
