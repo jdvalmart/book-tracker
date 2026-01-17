@@ -1,13 +1,15 @@
 
+import os
 from databases import Database
 from sqlalchemy import create_engine, MetaData
 
-DATABASE_URL = "sqlite:///./books.db"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 database = Database(DATABASE_URL)
 metadata = MetaData()
 
+# 👇 importante para SQLite
 engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    DATABASE_URL.replace("aiosqlite", "pysqlite"),
+    connect_args={"check_same_thread": False},
 )
