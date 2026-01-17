@@ -1,73 +1,171 @@
-# React + TypeScript + Vite
+📚 Book Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación Full Stack para gestionar libros (CRUD), desarrollada con React + TypeScript en el frontend y FastAPI + PostgreSQL en el backend.
+El frontend está desplegado en Netlify y el backend en Railway.
 
-Currently, two official plugins are available:
+🚀 Demo en Producción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌐 Frontend (Netlify)
+👉 <https://book-tracker1.netlify.app>
 
-## React Compiler
+⚙️ Backend API (Railway)
+👉 <https://bountiful-imagination-production.up.railway.app>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+👉 Swagger Docs: /docs
+`🧱 Arquitectura
+Frontend (React + Vite + TS)
+|
+| Axios (REST)
+|
+Backend (FastAPI)
+|
+| SQLAlchemy + Databases
+|
+PostgreSQL (Railway)`
+🛠️ Tecnologías
+Frontend
 
-## Expanding the ESLint configuration
+React
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+TypeScript
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Vite
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Axios
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Context API
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Netlify (deploy)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Backend
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+FastAPI
+
+Python 3.11
+
+SQLAlchemy
+
+Databases
+
+PostgreSQL
+
+Uvicorn
+
+Docker
+
+Railway (deploy)
+
+📦 Funcionalidades
+
+✔️ Listar libros
+✔️ Crear libros
+✔️ Editar libros
+✔️ Eliminar libros
+✔️ Estado de lectura
+✔️ Persistencia en base de datos
+✔️ CORS configurado para producción
+`📁 Estructura del Proyecto
+book-tracker/
+├── backend/
+│ ├── main.py
+│ ├── database.py
+│ ├── models.py
+│ ├── requirements.txt
+│ ├── Dockerfile
+│ └── .env
+│
+└── frontend/
+├── src/
+│ ├── context/
+│ ├── components/
+│ ├── types/
+│ └── main.tsx
+├── index.html
+├── vite.config.ts
+└── .env`
+⚙️ Variables de Entorno
+Frontend (frontend/.env)
+VITE_API_URL=<https://bountiful-imagination-production.up.railway.app>
+
+Backend (backend/.env)
+DATABASE_URL=postgresql://user:password@host:port/database
+
+📌 En producción, estas variables se configuran directamente en Railway y Netlify.
+
+▶️ Ejecutar el Proyecto en Local
+1️⃣ Backend
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+Backend disponible en:
+
+<http://127.0.0.1:8000>
+
+2️⃣ Frontend
+cd frontend
+npm install
+npm run dev
+
+Frontend disponible en:
+
+<http://localhost:5173>
+
+🔒 CORS
+
+El backend está configurado para aceptar peticiones desde:
+
+<http://localhost:5173>
+
+<https://book-tracker1.netlify.app>
+
+📌 Endpoints Principales
+Método Endpoint Descripción
+GET /books Obtener libros
+POST /books Crear libro
+PUT /books/{id} Actualizar libro
+DELETE /books/{id} Eliminar libro
+📄 Documentación API
+
+FastAPI genera documentación automática:
+
+Swagger UI → /docs
+
+ReDoc → /redoc
+
+🚀 Deploy
+Backend
+
+Dockerizado
+
+Deploy en Railway
+
+PostgreSQL gestionado por Railway
+
+Frontend
+
+Build con Vite
+
+Deploy en Netlify
+
+Variables de entorno configuradas en Netlify
+
+📌 Próximas Mejoras
+
+🔐 Autenticación con JWT
+
+👤 Usuarios y sesiones
+
+🧪 Tests (Pytest + Vitest)
+
+📦 Migraciones con Alembic
+
+🧹 Clean Architecture
+
+👨‍💻 Autor
+
+Proyecto desarrollado por:
+Juan David Valencia
+Ingeniero de Software
