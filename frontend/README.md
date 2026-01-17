@@ -18,6 +18,7 @@ El proyecto está construido con **React + TypeScript** en el frontend y **FastA
 
 ## 🧱 Arquitectura General
 
+```
 ┌──────────────────────────┐
 │ Frontend (React + TS) │
 │ Vite + Context API │
@@ -32,6 +33,7 @@ El proyecto está construido con **React + TypeScript** en el frontend y **FastA
 │ PostgreSQL DB │
 │ (Railway) │
 └──────────────────────────┘
+```
 
 yaml
 Copiar código
@@ -77,7 +79,8 @@ Copiar código
 
 ## 📁 Estructura del Proyecto
 
-book-tracker/
+```
+`book-tracker/
 ├── backend/
 │ ├── main.py
 │ ├── database.py
@@ -90,11 +93,14 @@ book-tracker/
 ├── src/
 │ ├── context/
 │ ├── components/
-│ ├── types/
+│`├── types/
 │ └── main.tsx
 ├── index.html
 ├── vite.config.ts
 └── .env
+
+
+```
 
 yaml
 Copiar código
@@ -190,4 +196,8 @@ Variables de entorno configuradas desde Netlify UI
 👨‍💻 Autor
 Juan David Valencia
 Ingeniero de Software
+```
+
+```
+
 ```
