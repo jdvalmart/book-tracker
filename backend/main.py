@@ -5,15 +5,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import database, engine, metadata
 from models import books
 from schemas import Book, BookCreate
-
-metadata.create_all(engine)
+import asyncio
 
 app = FastAPI(title="Book Tracker API")
 
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # OK para desarrollo
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -21,7 +19,17 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup():
-    await database.connect()
+    for i in range(10):
+        try:
+            metadata.create_all(engine)   # 👈 CREA TABLAS
+            await database.connect()
+            print("✅ Database connected")
+            return
+        except Exception as e:
+            print(f"⏳ Waiting for DB ({i+1}/10): {e}")
+            await asyncio.sleep(2)
+
+    raise RuntimeError("❌ Database not available")
 
 @app.on_event("shutdown")
 async def shutdown():
@@ -65,5 +73,3 @@ async def delete_book(book_id: str):
 
     if result == 0:
         raise HTTPException(status_code=404, detail="Book not found")
-
-    return {"message": "Book deleted"}
