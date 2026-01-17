@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { Book } from "../types/Book";
-import axios from "axios";
 import type { ReactNode } from "react";
+import api from "../api/axios";
 
 interface BookContextType {
   books: Book[];
@@ -13,14 +13,12 @@ interface BookContextType {
 
 const BookContext = createContext<BookContextType | undefined>(undefined);
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 export const BookProvider = ({ children }: { children: ReactNode }) => {
   const [books, setBooks] = useState<Book[]>([]);
 
   const fetchBooks = async () => {
     try {
-      const res = await axios.get<Book[]>(`${API_URL}/books`);
+      const res = await api.get<Book[]>("/books");
       setBooks(res.data);
     } catch (error) {
       console.error(error);
@@ -29,7 +27,7 @@ export const BookProvider = ({ children }: { children: ReactNode }) => {
 
   const addBook = async (book: Omit<Book, "id">) => {
     try {
-      const res = await axios.post<Book>(`${API_URL}/books`, book);
+      const res = await api.post<Book>("/books", book);
       setBooks((prev) => [...prev, res.data]);
     } catch (error) {
       console.error(error);
@@ -39,12 +37,12 @@ export const BookProvider = ({ children }: { children: ReactNode }) => {
   const updateBook = async (book: Book) => {
     try {
       const { id, title, autor, read } = book;
-      const res = await axios.put<Book>(`${API_URL}/books/${id}`, {
+      const res = await api.put<Book>(`/books/${id}`, {
         title,
         autor,
         read,
       });
-      setBooks((prev) => prev.map((b) => (b.id === book.id ? res.data : b)));
+      setBooks((prev) => prev.map((b) => (b.id === id ? res.data : b)));
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +50,7 @@ export const BookProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteBook = async (id: string) => {
     try {
-      await axios.delete(`${API_URL}/books/${id}`);
+      await api.delete(`/books/${id}`);
       setBooks((prev) => prev.filter((b) => b.id !== id));
     } catch (error) {
       console.error(error);
