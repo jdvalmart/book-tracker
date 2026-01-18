@@ -1,37 +1,44 @@
-📚 Book Tracker — Full Stack Portfolio Project
+# 📚 Book Tracker — Full Stack Portfolio Project
 
-Book Tracker es una aplicación Full Stack desarrollada como proyecto de portafolio para demostrar habilidades reales en desarrollo frontend, backend, arquitectura, despliegue y consumo de APIs REST.
+**Book Tracker** es una aplicación **Full Stack** desarrollada como
+proyecto de portafolio para demostrar habilidades reales en desarrollo
+frontend, backend, arquitectura, despliegue y consumo de APIs REST.
 
-La aplicación permite gestionar libros (CRUD completo) y controlar su estado de lectura, utilizando tecnologías modernas y un flujo de despliegue en la nube.
+La aplicación permite gestionar libros mediante un CRUD completo y
+controlar su estado de lectura, utilizando tecnologías modernas y un
+flujo de despliegue en la nube.
 
-🔗 Enlaces del Proyecto
+---
 
-🌐 Demo en Producción (Frontend)
-<https://book-tracker1.netlify.app>
+## 🔗 Enlaces del Proyecto
 
-🔌 API Backend (FastAPI)
-<https://bountiful-imagination-production.up.railway.app>
+- 🌐 **Demo en Producción (Frontend)**  
+  <https://book-tracker1.netlify.app>
 
-📘 Documentación Swagger
-/docs
+- 🔌 **API Backend (FastAPI)**  
+  <https://bountiful-imagination-production.up.railway.app>
 
-🧠 Objetivo del Proyecto
+- 📘 **Documentación Swagger**  
+  `/docs`
 
-Este proyecto fue construido con fines demostrativos y educativos, enfocado en:
+---
 
-Diseño y consumo de APIs REST
+## 🧠 Objetivo del Proyecto
 
-Separación clara de responsabilidades entre frontend y backend
+Este proyecto fue construido con fines demostrativos y educativos,
+enfocado en:
 
-Manejo de estado global sin Redux
+- Diseño y consumo de APIs REST
+- Separación de responsabilidades entre frontend y backend
+- Manejo de estado global sin Redux
+- Persistencia de datos en PostgreSQL
+- Contenerización con Docker
+- Despliegue en entornos productivos
 
-Persistencia de datos en PostgreSQL
+---
 
-Contenerización con Docker
+## 🧱 Arquitectura
 
-Despliegue en entornos productivos (Netlify + Railway)
-
-🧱 Arquitectura
 Frontend (React + TypeScript)
 │
 │ Axios (REST API)
@@ -41,58 +48,50 @@ Backend (FastAPI)
 ▼
 PostgreSQL (Railway)
 
-🛠️ Stack Tecnológico
-Frontend
+yaml
+Copiar código
 
-React
+---
 
-TypeScript
+## 🛠️ Stack Tecnológico
 
-Vite
+### Frontend
 
-Axios
+- React
+- TypeScript
+- Vite
+- Axios
+- Context API
+- Netlify
 
-Context API
+### Backend
 
-Netlify
+- FastAPI
+- Python 3.11
+- SQLAlchemy
+- Databases
+- PostgreSQL
+- Uvicorn
+- Docker
+- Railway
 
-Backend
+---
 
-FastAPI
+## ✨ Funcionalidades
 
-Python 3.11
+- 📖 Listado de libros
+- ➕ Creación de libros
+- ✏️ Edición de libros
+- 🗑️ Eliminación de libros
+- ✅ Marcado de libros como leídos
+- 🌐 Integración con API REST
+- 🔒 Configuración de CORS para producción
+- 🗄️ Persistencia de datos en PostgreSQL
 
-SQLAlchemy
+---
 
-Databases
+## 📁 Estructura del Proyecto
 
-PostgreSQL
-
-Uvicorn
-
-Docker
-
-Railway
-
-✨ Funcionalidades Clave
-
-📖 Listado de libros
-
-➕ Creación de libros
-
-✏️ Edición de libros
-
-🗑️ Eliminación de libros
-
-✅ Marcar libros como leídos
-
-🌐 Integración con API REST
-
-🔒 Configuración de CORS para producción
-
-🗄️ Persistencia de datos en PostgreSQL
-
-📁 Estructura del Proyecto
 book-tracker/
 ├── backend/
 │ ├── main.py
@@ -112,41 +111,57 @@ book-tracker/
 ├── vite.config.ts
 └── .env
 
-⚙️ Variables de Entorno
-Frontend
-VITE_API_URL=<https://bountiful-imagination-production.up.railway.app>
+yaml
+Copiar código
 
+---
+
+## ⚙️ Variables de Entorno
+
+### Frontend
+
+```env
+VITE_API_URL=https://bountiful-imagination-production.up.railway.app
 Backend
+env
+Copiar código
 DATABASE_URL=postgresql://user:password@host:port/database
-
-En producción, las variables de entorno se gestionan directamente desde Netlify y Railway.
+En producción, las variables de entorno se configuran directamente desde
+Netlify y Railway.
 
 ▶️ Ejecución Local
 Backend
+bash
+Copiar código
 cd backend
 python -m venv venv
-source venv/bin/activate # Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
 uvicorn main:app --reload
+Backend disponible en:
 
-📍 <http://127.0.0.1:8000>
-
+cpp
+Copiar código
+http://127.0.0.1:8000
 Frontend
+bash
+Copiar código
 cd frontend
 npm install
 npm run dev
+Frontend disponible en:
 
-📍 <http://localhost:5173>
+arduino
+Copiar código
+http://localhost:5173
+🔒 Configuración CORS
+El backend permite solicitudes desde los siguientes orígenes:
 
-🔒 CORS
+http://localhost:5173
 
-El backend permite solicitudes desde:
+https://book-tracker1.netlify.app
 
-<http://localhost:5173>
-
-<https://book-tracker1.netlify.app>
-
-Configurado mediante CORSMiddleware en FastAPI.
+La configuración se realiza mediante CORSMiddleware en FastAPI.
 
 📌 Endpoints Principales
 Método Endpoint Descripción
@@ -154,43 +169,43 @@ GET /books Obtener libros
 POST /books Crear libro
 PUT /books/{id} Actualizar libro
 DELETE /books/{id} Eliminar libro
+
 📄 Documentación de la API
+FastAPI genera documentación automática:
 
-📘 Swagger UI → /docs
+Swagger UI en /docs
 
-📙 ReDoc → /redoc
+ReDoc en /redoc
 
 🚀 Despliegue
-
 Backend
-
-Dockerizado
+Contenerizado con Docker
 
 Desplegado en Railway
 
-PostgreSQL administrado por Railway
+Base de datos PostgreSQL administrada por Railway
 
 Frontend
-
 Build con Vite
 
 Desplegado en Netlify
 
+Variables de entorno configuradas desde Netlify
+
 🧩 Mejoras Futuras
+Autenticación y autorización con JWT
 
-🔐 Autenticación y autorización con JWT
+Gestión de usuarios
 
-👥 Gestión de usuarios
+Tests automatizados con Pytest y Vitest
 
-🧪 Testing automatizado (Pytest / Vitest)
+Migraciones de base de datos con Alembic
 
-🗂️ Migraciones con Alembic
-
-🧼 Clean Architecture
+Implementación de Clean Architecture
 
 👨‍💻 Autor
-
 Juan David Valencia
 Ingeniero de Software
 
-📌 Proyecto desarrollado como parte de mi portafolio profesional.
+Proyecto desarrollado como parte de mi portafolio profesional.
+```
