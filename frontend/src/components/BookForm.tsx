@@ -18,7 +18,7 @@ export const BookForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 mb-6  rounded-lg bg-gray-50,"
+      className="flex flex-col gap-3 mb-6 border-none rounded-lg bg-gray-50,"
     >
       <input
         type="text"
