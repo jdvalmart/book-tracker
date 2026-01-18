@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, HTTPException
 from uuid import uuid4
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,7 +10,7 @@ app = FastAPI(title="Book Tracker API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://book-tracker1.netlify.app"],  # OK para desarrollo
+    allow_origins=["https://book-tracker1.netlify.app","http://localhost:5173"],  # OK para desarrollo
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -21,7 +20,6 @@ app.add_middleware(
 async def startup():
     for i in range(10):
         try:
-            metadata.create_all(engine)   # 👈 CREA TABLAS
             await database.connect()
             print("✅ Database connected")
             return
