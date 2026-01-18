@@ -39,6 +39,8 @@ enfocado en:
 
 ## 🧱 Arquitectura
 
+```
+
 Frontend (React + TypeScript)
 │
 │ Axios (REST API)
@@ -48,8 +50,7 @@ Backend (FastAPI)
 ▼
 PostgreSQL (Railway)
 
-yaml
-Copiar código
+```
 
 ---
 
@@ -92,7 +93,7 @@ Copiar código
 
 ## 📁 Estructura del Proyecto
 
-book-tracker/
+```book-tracker/
 ├── backend/
 │ ├── main.py
 │ ├── database.py
@@ -111,8 +112,8 @@ book-tracker/
 ├── vite.config.ts
 └── .env
 
-yaml
-Copiar código
+
+```
 
 ---
 
@@ -192,20 +193,12 @@ Desplegado en Netlify
 
 Variables de entorno configuradas desde Netlify
 
-🧩 Mejoras Futuras
-Autenticación y autorización con JWT
 
-Gestión de usuarios
 
-Tests automatizados con Pytest y Vitest
-
-Migraciones de base de datos con Alembic
-
-Implementación de Clean Architecture
+```
 
 👨‍💻 Autor
 Juan David Valencia
 Ingeniero de Software
 
 Proyecto desarrollado como parte de mi portafolio profesional.
-```
