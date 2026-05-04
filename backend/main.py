@@ -48,7 +48,7 @@ async def create_book(book: BookCreate):
         read=book.read
     )
     await database.execute(query)
-    return {**book.dict(), "id": book_id}
+    return {**book.model_dump(), "id": book_id}
 
 @app.put("/books/{book_id}", response_model=Book)
 async def update_book(book_id: str, book: BookCreate):
@@ -62,7 +62,7 @@ async def update_book(book_id: str, book: BookCreate):
         )
     )
     await database.execute(query)
-    return {**book.dict(), "id": book_id}
+    return {**book.model_dump(), "id": book_id}
 
 @app.delete("/books/{book_id}", status_code=204)
 async def delete_book(book_id: str):
