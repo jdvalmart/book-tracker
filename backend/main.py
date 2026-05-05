@@ -1,11 +1,4 @@
-"""
-Book Tracker API — FastAPI application.
-
-Arquitectura en capas:
-- routers/  → Capa HTTP (recibe requests, delega al service)
-- services/ → Capa de negocio (lógica, SQL, reglas)
-- models/   → Capa de datos (schema SQLAlchemy)
-"""
+"""Book Tracker API — FastAPI application (routers/services/models layers)."""
 
 from contextlib import asynccontextmanager
 
@@ -18,10 +11,7 @@ from routers import books
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """
-    Ciclo de vida de la aplicación.
-    Reemplaza los deprecados @app.on_event("startup"/"shutdown").
-    """
+    """Ciclo de vida: conecta/desconecta la base de datos."""
     await database.connect()
     yield
     await database.disconnect()
