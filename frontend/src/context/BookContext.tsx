@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import type { Book } from "../types/Book";
 import type { ReactNode } from "react";
 import api from "../api/axios";
@@ -6,7 +6,10 @@ import { useToast } from "./ToastContext";
 
 interface BookContextType {
   books: Book[];
+  loading: boolean;
+  error: string | null;
   fetchBooks: () => void;
+  retry: () => void;
   addBook: (book: Omit<Book, "id">) => void;
   updateBook: (book: Book) => void;
   deleteBook: (id: string) => void;
@@ -16,16 +19,27 @@ const BookContext = createContext<BookContextType | undefined>(undefined);
 
 export const BookProvider = ({ children }: { children: ReactNode }) => {
   const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const toast = useToast();
 
-  const fetchBooks = async () => {
+  const fetchBooks = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
       const res = await api.get<Book[]>("/books");
       setBooks(res.data);
     } catch {
+      setError("No se pudo conectar con el servidor");
       toast.error("Error al cargar los libros");
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [toast]);
+
+  const retry = useCallback(() => {
+    fetchBooks();
+  }, [fetchBooks]);
 
   const addBook = async (book: Omit<Book, "id">) => {
     try {
@@ -60,11 +74,11 @@ export const BookProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [fetchBooks]);
 
   return (
     <BookContext.Provider
-      value={{ books, fetchBooks, addBook, updateBook, deleteBook }}
+      value={{ books, loading, error, fetchBooks, retry, addBook, updateBook, deleteBook }}
     >
       {children}
     </BookContext.Provider>
