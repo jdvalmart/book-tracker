@@ -16,14 +16,15 @@ export const BookList = () => {
     );
   }
 
-  // ❌ Error — mensaje + reintentar
+  // ❌ Error — caja visual con emoji
   if (error) {
     return (
-      <div className="text-center py-8">
-        <p className="text-red-600 mb-3">{error}</p>
+      <div className="text-center py-6 px-4 border border-red-200 bg-red-50 rounded-lg">
+        <span className="text-3xl">⚠️</span>
+        <p className="text-red-700 mt-2">{error}</p>
         <button
           onClick={retry}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
+          className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"
         >
           Reintentar
         </button>
@@ -31,13 +32,16 @@ export const BookList = () => {
     );
   }
 
-  // 📭 Vacío real — CTA
+  // 📭 Vacío real — emoji grande + tono cálido
   if (books.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-gray-500 text-lg mb-2">Tu biblioteca está vacía</p>
-        <p className="text-gray-400 text-sm">
-          ¡Agrega tu primer libro usando el formulario de arriba!
+        <span className="text-5xl">📖</span>
+        <p className="text-gray-600 text-lg mt-3">
+          Tu biblioteca está vacía
+        </p>
+        <p className="text-gray-400 text-sm mt-1">
+          ¡Agrega tu primer libro usando el formulario!
         </p>
       </div>
     );

@@ -45,7 +45,7 @@ export const BookProvider = ({ children }: { children: ReactNode }) => {
     try {
       const res = await api.post<Book>("/books", book);
       setBooks((prev) => [...prev, res.data]);
-      toast.success("Libro agregado");
+      toast.success("📚 Libro agregado");
     } catch {
       toast.error("Error al agregar el libro");
     }
@@ -56,7 +56,7 @@ export const BookProvider = ({ children }: { children: ReactNode }) => {
       const { id, title, autor, read } = book;
       const res = await api.put<Book>(`/books/${id}`, { title, autor, read });
       setBooks((prev) => prev.map((b) => (b.id === id ? res.data : b)));
-      toast.success("Libro actualizado");
+      toast.success("✅ Libro actualizado");
     } catch {
       toast.error("Error al actualizar el libro");
     }
@@ -66,7 +66,7 @@ export const BookProvider = ({ children }: { children: ReactNode }) => {
     try {
       await api.delete(`/books/${id}`);
       setBooks((prev) => prev.filter((b) => b.id !== id));
-      toast.success("Libro eliminado");
+      toast.success("🗑️ Libro eliminado");
     } catch {
       toast.error("Error al eliminar el libro");
     }

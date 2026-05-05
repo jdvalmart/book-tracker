@@ -5,20 +5,23 @@ export const BookForm = () => {
   const { addBook } = useBooks();
   const [title, setTitle] = useState("");
   const [autor, setAutor] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim() || !autor.trim()) return;
 
-    addBook({ title, autor, read: false });
+    setSubmitting(true);
+    await addBook({ title, autor, read: false });
     setTitle("");
     setAutor("");
+    setSubmitting(false);
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 mb-6 border-none rounded-lg bg-gray-50,"
+      className="flex flex-col gap-3 mb-6"
     >
       <input
         type="text"
@@ -36,9 +39,14 @@ export const BookForm = () => {
       />
       <button
         type="submit"
-        className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        disabled={submitting}
+        className={`py-2 rounded text-white ${
+          submitting
+            ? "bg-blue-400 cursor-not-allowed"
+            : "bg-blue-600 hover:bg-blue-700"
+        }`}
       >
-        Agregar Libro
+        {submitting ? "Agregando..." : "Agregar Libro"}
       </button>
     </form>
   );
