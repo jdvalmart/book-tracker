@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   test: {
     environment: "jsdom",
-    setupFiles: ["./src/__tests__/setup.ts"],
+    setupFiles: ["./src/__tests__/setup.tsx"],
     globals: true,
   },
 });

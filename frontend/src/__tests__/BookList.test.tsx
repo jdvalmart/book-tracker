@@ -1,20 +1,11 @@
-/**
- * Tests del componente BookList.
- *
- * Verifica el estado vacío (sin libros) y el estado con datos.
- */
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
 import { BookList } from "../components/BookList";
-import { BookProvider } from "../context/BookContext";
+import { render } from "./setup";
 
 describe("BookList", () => {
   test("muestra mensaje cuando no hay libros", () => {
-    render(
-      <BookProvider>
-        <BookList />
-      </BookProvider>
-    );
+    render(<BookList />);
     expect(screen.getByText(/No hay libros aún/)).toBeInTheDocument();
   });
 });
