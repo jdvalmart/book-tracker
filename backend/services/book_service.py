@@ -36,7 +36,7 @@ async def create(data: dict) -> dict:
     return {"id": book_id, **data}
 
 
-async def update(book_id: str, data: dict) -> dict:
+async def update(book_id: str, data: dict) -> dict | None:
     """
     Actualiza un libro existente.
 
@@ -45,14 +45,16 @@ async def update(book_id: str, data: dict) -> dict:
         data: Diccionario con los campos a actualizar
 
     Returns:
-        Dict con id + datos actualizados
+        Dict con id + datos actualizados, o None si no existe
     """
     query = (
         books.update()
         .where(books.c.id == book_id)
         .values(**data)
     )
-    await database.execute(query)
+    result = await database.execute(query)
+    if result == 0:
+        return None
     return {"id": book_id, **data}
 
 

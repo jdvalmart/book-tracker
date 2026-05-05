@@ -33,9 +33,12 @@ async def create_book(book: BookCreate):
 
 @router.put("/{book_id}", response_model=Book)
 async def update_book(book_id: str, book: BookCreate):
-    """Actualiza un libro existente."""
+    """Actualiza un libro existente. Retorna 404 si no existe."""
     data = book.model_dump()
-    return await book_service.update(book_id, data)
+    result = await book_service.update(book_id, data)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return result
 
 
 @router.delete("/{book_id}", status_code=204)

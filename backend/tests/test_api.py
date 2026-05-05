@@ -160,3 +160,15 @@ class TestUpdateBook:
             "read": True,
         })
         assert response.status_code == 422
+
+    async def test_actualizar_libro_inexistente_retorna_404(self, client):
+        """
+        Bug fix: PUT a un ID que no existe debe retornar 404.
+        Antes devolvía 200 silenciosamente (falsa confirmación).
+        """
+        response = await client.put("/books/fake-id-999", json={
+            "title": "Ghost",
+            "autor": "Nobody",
+            "read": False,
+        })
+        assert response.status_code == 404
