@@ -3,6 +3,7 @@ import { ToastProvider } from "./context/ToastContext";
 import { BookForm } from "./components/BookForm";
 import { BookList } from "./components/BookList";
 import { ToastContainer } from "./components/Toast";
+import { ReadingStats } from "./components/ReadingStats";
 
 function BookCounter() {
   const { books, loading } = useBooks();
@@ -25,6 +26,7 @@ function App() {
               📚 Book Tracker
             </h1>
             <BookCounter />
+            <ReadingStats />
             <BookForm />
             <BookList />
           </div>
