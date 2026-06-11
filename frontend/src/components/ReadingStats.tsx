@@ -9,17 +9,16 @@ const StatCard = ({
   value: number;
   emoji: string;
 }) => (
-  <div className="bg-gray-50 rounded-lg p-3 text-center">
+  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 text-center">
     <span className="text-xl">{emoji}</span>
-    <div className="text-2xl font-bold text-gray-800">{value}</div>
-    <div className="text-xs text-gray-500">{label}</div>
+    <div className="text-2xl font-bold text-gray-800 dark:text-gray-100">{value}</div>
+    <div className="text-xs text-gray-500 dark:text-gray-400">{label}</div>
   </div>
 );
 
 export const ReadingStats = () => {
   const { books } = useBooks();
 
-  // Ocultar si no hay datos — sin libros no hay nada que medir
   if (books.length === 0) return null;
 
   const total = books.length;
@@ -33,12 +32,11 @@ export const ReadingStats = () => {
       <StatCard label="Leídos" value={read} emoji="✅" />
       <StatCard label="Pendientes" value={unread} emoji="📖" />
 
-      {/* Barra de progreso */}
-      <div className="bg-gray-50 rounded-lg p-3 text-center">
+      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 text-center">
         <span className="text-xl">📊</span>
-        <div className="text-2xl font-bold text-gray-800">{percent}%</div>
-        <div className="text-xs text-gray-500 mb-1">completado</div>
-        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div className="text-2xl font-bold text-gray-800 dark:text-gray-100">{percent}%</div>
+        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">completado</div>
+        <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               percent === 100 ? "bg-green-500" : "bg-blue-500"

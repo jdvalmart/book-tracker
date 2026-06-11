@@ -19,23 +19,20 @@ export const BookForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-3 mb-6"
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 mb-6">
       <input
         type="text"
         placeholder="Título del libro"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="p-2 border dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <input
         type="text"
         placeholder="Autor"
         value={autor}
         onChange={(e) => setAutor(e.target.value)}
-        className="p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="p-2 border dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button
         type="submit"
@@ -43,7 +40,7 @@ export const BookForm = () => {
         className={`py-2 rounded text-white ${
           submitting
             ? "bg-blue-400 cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700"
+            : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
         }`}
       >
         {submitting ? "Agregando..." : "Agregar Libro"}

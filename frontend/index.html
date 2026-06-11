@@ -5,6 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/book-tracker.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book-tracker</title>
+    <script>
+      // Anti-FOUC: aplicar dark mode antes de que React monte
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
